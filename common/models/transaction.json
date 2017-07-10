@@ -1,0 +1,78 @@
+{
+  "name": "transaction",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "transactionId": {
+      "type": "string"
+    },
+    "PermanentAccountNumber": {
+      "type": "string"
+    },
+    "TransactionAmount": {
+      "type": "string"
+    },
+    "TransactionCurrencyCode": {
+      "type": "string"
+    },
+    "CreditDebitIndicator": {
+      "type": "string"
+    },
+    "TransactionStatus": {
+      "type": "string"
+    },
+    "PostedDateTime": {
+      "type": "string"
+    },
+    "BookedDateTime": {
+      "type": "string"
+    },
+    "TransactionDescription": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "string"
+    },
+    "InterimBookedBalanceAmount": {
+      "type": "string"
+    },
+    "InterimBookedBalanceCurrencyCode": {
+      "type": "string"
+    },
+    "BankTransactionCode": {
+      "type": "string"
+    },
+    "BankTransactionSubCode": {
+      "type": "string"
+    },
+    "ProprietaryTransactionCode": {
+      "type": "string"
+    },
+    "ProprietaryTransactionIssuer": {
+      "type": "string"
+    },
+    "MerchantName": {
+      "type": "string"
+    },
+    "MerchantCategoryCode": {
+      "type": "string"
+    },
+    "InterimBookedCreditDebitIndicator": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}
