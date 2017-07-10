@@ -1,0 +1,100 @@
+swagger: '2.0'
+info:
+  title: Account Model Specification
+  version: 0.0.1
+schemes:
+  - http
+  - https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  Account:
+    type: object
+    required:
+      - accountNumber
+      - sortCode
+    properties:
+      accountNumber:
+        type: integer
+      sortCode:
+        type: integer
+      TransactionId:
+        type: string
+      PermanentAccountNumber:
+        type: string
+      TransactionAmount:
+        type: string
+      TransactionCurrencyCode:
+        type: string
+      CreditDebitIndicator:
+        type: string
+        format: float
+      TransactionStatus:
+        type: string
+      PostedDateTime:
+        type: string
+      BookedDateTime:
+        type: string
+      TransactionDescription:
+        type: string
+      Type:
+        type: string
+      InterimBookedBalanceAmount:
+        type: string
+      InterimBookedBalanceCurrencyCode:
+        type: string
+      BankTransactionCode:
+        type: string
+      BankTransactionSubCode:
+        type: string
+      ProprietaryTransactionIssuer:
+        type: string
+      MerchantName:
+        type: string
+      MerchantCategoryCode:
+        type: string
+      InterimBookedCreditDebitIndicator:
+        type: string
+  Input:
+    type: object
+    properties:
+      AccountNumber:
+        type: integer
+      SortCode:
+        type: integer
+paths:
+  /find/:
+    get:
+      tags:
+        - Account
+      description: search  account.
+      operationId: Account.fetch
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: AccountInfo
+          in: body
+          description: get  account info.
+          required: true
+          schema:
+            $ref: '#/definitions/Input'
+        - name: accesstoken
+          in: header
+          description: token to be passed as a header
+          type: string
+          required: true
+        - name: x-customer-id
+          in: header
+          description: customer id to be passed as header
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Account info successful Response
+          schema:
+            $ref: '#/definitions/Account'

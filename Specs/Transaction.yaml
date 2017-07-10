@@ -1,0 +1,100 @@
+swagger: '2.0'
+info:
+  title: Transaction Model Specificatio
+  version: 0.0.1
+schemes:
+  - http
+  - https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  Transaction:
+    type: object
+    required:
+      - transactionId
+      - sortCode
+    properties:
+      transactionId:
+        type: integer
+      sortCode:
+        type: integer
+      TransactionId:
+        type: string
+      PermanentAccountNumber:
+        type: string
+      TransactionAmount:
+        type: string
+      TransactionCurrencyCode:
+        type: string
+      CreditDebitIndicator:
+        type: string
+        format: float
+      TransactionStatus:
+        type: string
+      PostedDateTime:
+        type: string
+      BookedDateTime:
+        type: string
+      TransactionDescription:
+        type: string
+      Type:
+        type: string
+      InterimBookedBalanceAmount:
+        type: string
+      InterimBookedBalanceCurrencyCode:
+        type: string
+      BankTransactionCode:
+        type: string
+      BankTransactionSubCode:
+        type: string
+      ProprietaryTransactionIssuer:
+        type: string
+      MerchantName:
+        type: string
+      MerchantCategoryCode:
+        type: string
+      InterimBookedCreditDebitIndicator:
+        type: string
+  Input:
+    type: object
+    properties:
+      transactionId:
+        type: integer
+      SortCode:
+        type: integer
+paths:
+  /find/:
+    get:
+      tags:
+        - Transaction
+      description: search  account.
+      operationId: Transaction.fetch
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: TransactionInfo
+          in: body
+          description: get  account info.
+          required: true
+          schema:
+            $ref: '#/definitions/Input'
+        - name: accesstoken
+          in: header
+          description: token to be passed as a header
+          type: string
+          required: true
+        - name: x-customer-id
+          in: header
+          description: customer id to be passed as header
+          type: string
+          required: true
+      responses:
+        '200':
+          description: External Account add successful Response
+          schema:
+            $ref: '#/definitions/Transaction'

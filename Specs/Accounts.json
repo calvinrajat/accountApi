@@ -1,0 +1,99 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Account Model Specificatio",
+    "version": "0.0.1"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Account": {
+      "type": "object",
+      "required": [
+        "accountNumber",
+        "sortCode"
+      ],
+      "properties": {
+        "accountNumber": {
+          "type": "string"
+        },
+        "accountNumber": {
+          "type": "integer"
+        },
+        "sortCode": {
+          "type": "integer"
+        }
+      }
+    },
+    "Input": {
+      "type": "object",
+      "properties": {
+        "AccountNumber": {
+          "type": "integer"
+        },
+        "SortCode": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "paths": {
+    "/find/": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "search  account.",
+        "operationId": "Account.fetch",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "AccountInfo",
+            "in": "body",
+            "description": "get  account info.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Input"
+            }
+          },
+          {
+            "name": "accesstoken",
+            "in": "header",
+            "description": "token to be passed as a header",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "x-customer-id",
+            "in": "header",
+            "description": "customer id to be passed as header",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "External Account add successful Response",
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          }
+        }
+      }
+    }
+  }
+}
